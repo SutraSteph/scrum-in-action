@@ -2,7 +2,7 @@ Budget App :
 Application console simple pour calculer et sauvegarder un budget mensuel
 
 📌 Présentation
-Budget Master 3000 est une petite application Python en ligne de commande permettant de :
+Budget App est une petite application Python en ligne de commande permettant de :
 - saisir un revenu mensuel,
 - entrer des dépenses par catégorie,
 - calculer automatiquement le total des dépenses et les économies restantes,
@@ -42,4 +42,5 @@ Une fois les valeurs saisies, elle affiche :
 - les économies restantes.
 Puis elle sauvegarde automatiquement les données dans :
 data/finances.json
+
 
