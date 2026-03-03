@@ -1,11 +1,16 @@
 import json
 import os
 
+# Couleurs ANSI
+RED = "\033[91m"
+GREEN = "\033[92m"
+YELLOW = "\033[93m"
+CYAN = "\033[96m"
+RESET = "\033[0m"
+BOLD = "\033[1m"
+
 FILE_PATH = os.path.join("data", "finances.json")
 
-# ---------------------------------------------------------
-# Chargement / Sauvegarde JSON
-# ---------------------------------------------------------
 def load_data():
     if not os.path.exists(FILE_PATH):
         return {}
@@ -17,35 +22,55 @@ def save_data(data):
     with open(FILE_PATH, "w") as file:
         json.dump(data, file, indent=4)
 
-# ---------------------------------------------------------
-# Flux simple : revenu → dépenses → résumé
-# ---------------------------------------------------------
+def banner():
+    print(CYAN + BOLD)
+    print("╔══════════════════════════════════════╗")
+    print("║      💸  BUDGET APP  💸             ║")
+    print("╚══════════════════════════════════════╝")
+    print(RESET)
+
 def run_simple_flow():
-    print("\n=== Suivi financier mensuel ===")
+    banner()
+
+    print(YELLOW + "✨ Bienvenue dans votre suivi financier mensuel ✨" + RESET)
 
     # 1. Revenu
-    income = float(input("Entrez votre revenu mensuel : "))
+    income = float(input("\n💰 Entrez votre revenu mensuel : "))
 
-    # 2. Dépenses par catégorie
-    categories = ["rent", "food", "utilities", "leisure"]
+    # 2. Dépenses
+    categories = {
+        "rent": "🏠 Loyer",
+        "food": "🍽️ Nourriture",
+        "utilities": "💡 Factures",
+        "leisure": "🎮 Loisirs"
+    }
+
     expenses = {}
 
-    print("\nEntrez vos dépenses pour chaque catégorie :")
-    for cat in categories:
-        amount = float(input(f" - {cat} : "))
-        expenses[cat] = amount
+    print("\n📂 Entrez vos dépenses pour chaque catégorie :")
+    for key, label in categories.items():
+        amount = float(input(f" - {label} : "))
+        expenses[key] = amount
 
     # 3. Calculs
     total_expenses = sum(expenses.values())
     savings = income - total_expenses
 
-    # 4. Résumé
-    print("\n=== Résumé financier ===")
-    print(f"Revenu total : {income:.2f} €")
-    print(f"Dépenses totales : {total_expenses:.2f} €")
-    print(f"Économies : {savings:.2f} €")
+    # 4. Résumé stylé
+    print("\n" + CYAN + BOLD + "📊 RÉSUMÉ FINANCIER" + RESET)
+    print("──────────────────────────────────────────")
 
-    # 5. Sauvegarde JSON
+    print(f"💵 Revenu total     : {GREEN}{income:.2f} €{RESET}")
+    print(f"🧾 Dépenses totales : {RED}{total_expenses:.2f} €{RESET}")
+
+    if savings >= 0:
+        print(f"🎉 Économies        : {GREEN}{savings:.2f} €{RESET}")
+    else:
+        print(f"⚠️ Solde négatif    : {RED}{savings:.2f} €{RESET}")
+
+    print("──────────────────────────────────────────")
+
+    # 5. Sauvegarde
     data = {
         "income": income,
         "expenses": expenses,
@@ -54,10 +79,7 @@ def run_simple_flow():
     }
 
     save_data(data)
-    print("\nDonnées sauvegardées dans finances.json.")
+    print("\n💾 Données sauvegardées dans finances.json.\n")
 
-# ---------------------------------------------------------
-# Lancement
-# ---------------------------------------------------------
 if __name__ == "__main__":
     run_simple_flow()

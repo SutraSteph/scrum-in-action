@@ -2,10 +2,10 @@
     "income": 3000.0,
     "expenses": {
         "rent": 1000.0,
-        "food": 500.0,
-        "utilities": 300.0,
-        "leisure": 300.0
+        "food": 1000.0,
+        "utilities": 500.0,
+        "leisure": 500.0
     },
-    "total_expenses": 2100.0,
-    "savings": 900.0
+    "total_expenses": 3000.0,
+    "savings": 0.0
 }
