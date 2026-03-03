@@ -1,7 +1,7 @@
 Budget App :
 Application console simple pour calculer et sauvegarder un budget mensuel
 
-📌 Présentation
+📌 Présentation :
 Budget App est une petite application Python en ligne de commande permettant de :
 - saisir un revenu mensuel,
 - entrer des dépenses par catégorie,
@@ -9,7 +9,7 @@ Budget App est une petite application Python en ligne de commande permettant de 
 - sauvegarder toutes les données dans un fichier JSON (data/finances.json).
 L’objectif est de fournir un outil minimaliste, rapide et extensible pour suivre un budget mensuel.
 
-📂 Fonctionnalités
+📂 Fonctionnalités :
 - Saisie interactive du revenu et des dépenses.
 - Calcul automatique :
 - total des dépenses,
@@ -42,5 +42,6 @@ Une fois les valeurs saisies, elle affiche :
 - les économies restantes.
 Puis elle sauvegarde automatiquement les données dans :
 data/finances.json
+
 
 
